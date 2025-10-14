@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home - OAuth2 Login</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #7baaf7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 40px 60px;
+            text-align: center;
+            width: 360px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        a {
+            display: block;
+            margin: 12px 0;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        a.google {
+            background-color: #db4437;
+        }
+
+        a.google:hover {
+            background-color: #c1351d;
+            transform: scale(1.03);
+        }
+
+        a.github {
+            background-color: #24292e;
+        }
+
+        a.github:hover {
+            background-color: #000000;
+            transform: scale(1.03);
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Welcome to OAuth2 Login</h2>
+    <a href="/oauth2/authorization/google" class="google">🔑 Login with Google</a>
+    <a href="/oauth2/authorization/github" class="github">🐙 Login with GitHub</a>
+    <footer>© 2025 My OAuth2 App</footer>
+</div>
+</body>
+</html>

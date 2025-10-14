@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #f4f4f4, #d7e1ec);
+            text-align: center;
+            padding: 40px;
+        }
+        .card {
+            background-color: #fff;
+            width: 400px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        img {
+            border-radius: 50%;
+            width: 100px;
+        }
+        input, textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .logout {
+            margin-top: 20px;
+            display: inline-block;
+            color: #f00;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Your Profile</h2>
+
+    <img th:src="${picture}" alt="Profile Picture"/>
+    <p><b>Name:</b> <span th:text="${name}"></span></p>
+    <p><b>Email:</b> <span th:text="${email}"></span></p>
+
+    <hr>
+    <h3>Edit Profile</h3>
+    <form method="post" th:action="@{/profile}">
+        <label>Display Name:</label><br>
+        <input type="text" name="displayName" placeholder="Enter display name"><br>
+        <label>Bio:</label><br>
+        <textarea name="bio" placeholder="Write something about yourself"></textarea><br>
+        <button type="submit">Update</button>
+    </form>
+
+    <div th:if="${success}">
+        <p style="color:green;">✅ Profile updated successfully!</p>
+    </div>
+
+    <a href="/logout" class="logout">Logout</a>
+</div>
+
+</body>
+</html>
