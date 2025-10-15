@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class SecurityConfig {
@@ -21,15 +22,19 @@ public class SecurityConfig {
                 )
                 // OAuth2 Login configuration
                 .oauth2Login(oauth2 -> oauth2
-                        .loginPage("/") // use your home page with "Login with Google/GitHub" buttons
-                        .defaultSuccessUrl("/profile", true) // go to profile after successful login
+                        .loginPage("/") // Home page with login buttons
+                        .defaultSuccessUrl("/profile", true) // Redirect to profile after login
                 )
                 // Logout configuration
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/") // redirect to home after logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutSuccessUrl("/") // Redirect to home page
+                        .invalidateHttpSession(true) // Invalidate session
+                        .clearAuthentication(true)   // Clear authentication
+                        .deleteCookies("JSESSIONID") // Delete session cookie
                         .permitAll()
                 )
-                // Disable CSRF for development (you can enable later for production)
+                // Disable CSRF only for development
                 .csrf(csrf -> csrf.disable());
 
         return http.build();
